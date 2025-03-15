@@ -5,7 +5,31 @@
     >
   </h1>
   <div class="relative">
-    <p id="anim-p" class="p-6 text-main">
+    <svg
+      class="absolute h-full w-full overflow-visible"
+      width="540"
+      height="255"
+      viewBox="0 0 540 255"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M538 253.5V167H2L2 2"
+        stroke="url(#gradient)"
+        stroke-width="3"
+        id="border-path"
+        fill="none"
+        stroke-linecap="round"></path>
+      <defs>
+        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" style={{ stopColor: "#DC3A2B", stopOpacity: 1 }}
+          ></stop>
+          <stop offset="100%" style={{ stopColor: "#E18510", stopOpacity: 1 }}
+          ></stop>
+        </linearGradient>
+      </defs>
+    </svg>
+    <p id="anim-p" class="p-6 text-lg">
       You've stumbled upon <span class="font-bold text-primary">Mahmud's</span> little
       corner of the internet, where creativity runs rampant and normal is just a
       setting on a washing machine.<br />
@@ -18,5 +42,19 @@
       canvas of this digital universe. Here, every visit is an adventure, every glance
       an exploration. Dive in, the pixels are warm!
     </p>
+  </div>
+  <div class="flex justify-center pt-12 text-center">
+    <div class="w-32">
+      <h2>Art Posts</h2>
+      <p class="text-xl font-bold">85</p>
+    </div>
+    <div class="w-32">
+      <h2>Visitors</h2>
+      <p class="text-xl font-bold">1.2m</p>
+    </div>
+    <div class="w-32">
+      <h2>Reviews</h2>
+      <p class="text-xl font-bold">47</p>
+    </div>
   </div>
 </div>
