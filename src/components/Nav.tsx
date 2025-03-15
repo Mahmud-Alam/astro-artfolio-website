@@ -1,8 +1,26 @@
 import "../styles/global.css";
 import { useState } from "react";
-import avatar from "../../public/avatar.png";
+// import avatar from "../../public/avatar.png";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "../util/useMediaQuery";
+
+const navMotion = {
+  visible: {
+    opacity: 1,
+
+    transition: {
+      when: "beforeChildren",
+      staggerChildren: 0.15,
+    },
+  },
+  hidden: {
+    opacity: 0,
+  },
+};
+const itemMotion = {
+  visible: { opacity: 1, x: 0 },
+  hidden: { opacity: 0, x: -100 },
+};
 
 export default function Nav() {
   const [toggled, setToggled] = useState(false);
@@ -26,7 +44,8 @@ export default function Nav() {
         />
       </svg>
       <div>
-        <img src={avatar.src} alt="Profile Picture of Artfolio Website" />
+        {/* <img src={avatar.src} alt="Profile Picture of Artfolio Website" /> */}
+        <img src="/avatar.png" alt="Profile Picture of Artfolio Website" />
       </div>
 
       {/* Title */}
@@ -74,18 +93,19 @@ export default function Nav() {
         </div>
       )}
       {toggled && !matches && (
-        <motion.div
-          animate={{ opacity: 1, x: 0 }}
-          initial={{ opacity: 0, x: 25 }}
-          className="flex fixed bg-white bottom-0 left-0 w-full h-screen items-center justify-center"
-        >
-          <div className="flex flex-col gap-12">
-            <a href="/">Home</a>
-            <a href="/about">About</a>
-            <a href="/arts">Arts</a>
-            <a href="/contact">Contact</a>
-          </div>
-        </motion.div>
+        <div className="flex fixed bg-white bottom-0 left-0 w-full h-screen items-center justify-center">
+          <motion.div
+            variants={navMotion}
+            animate="visible"
+            initial="hidden"
+            className="flex flex-col gap-12"
+          >
+            <motion.a variants={itemMotion} href="/">Home</motion.a>
+            <motion.a variants={itemMotion} href="/about">About</motion.a>
+            <motion.a variants={itemMotion} href="/arts">Arts</motion.a>
+            <motion.a variants={itemMotion} href="/contact">Contact</motion.a>
+          </motion.div>
+        </div>
       )}
     </nav>
   );
