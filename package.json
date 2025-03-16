@@ -15,10 +15,12 @@
   },
   "dependencies": {
     "@astrojs/react": "^4.2.1",
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.0.14",
     "@types/react": "^19.0.10",
     "@types/react-dom": "^19.0.4",
     "astro": "^5.5.2",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^12.5.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
