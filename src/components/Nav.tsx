@@ -28,38 +28,19 @@ export default function Nav() {
 
   return (
     <nav className="relative mx-8 mb-24 flex justify-between items-center pt-12 pb-6 font-medium md:mx-16 lg:mx-32">
-      <svg
-        className="absolute bottom-0 left-1/2 -translate-x-1/2"
-        width="250"
-        height={4}
-        viewBox="0 0 250 4"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M2 2L428 2"
-          strokeWidth={2}
-          stroke="#282828"
-          strokeLinecap="round"
-        />
-      </svg>
-      <div>
+      <div className="flex justify-between items-center gap-5">
         {/* <img src={avatar.src} alt="Profile Picture of Artfolio Website" /> */}
         <img src="/avatar.png" alt="Profile Picture of Artfolio Website" />
+        <h1 className="text-lg font-bold">
+          <a href="/">Mahmud's Artfolio</a>
+        </h1>
       </div>
-
-      {/* Title */}
-
-      <h1 className="text-lg font-bold">
-        <a href="/">Artfolio</a>
-      </h1>
 
       {/* check if we are on mobile or not */}
       {matches && (
         <div className="flex gap-12">
-          <a href="/about">About</a>
-          <a href="/arts">Arts</a>
-          <a href="/contact">Contact</a>
+          <a href="#arts">Arts</a>
+          <a href="#contact">Contact</a>
         </div>
       )}
 
@@ -100,10 +81,15 @@ export default function Nav() {
             initial="hidden"
             className="flex flex-col gap-12"
           >
-            <motion.a variants={itemMotion} href="/">Home</motion.a>
-            <motion.a variants={itemMotion} href="/about">About</motion.a>
-            <motion.a variants={itemMotion} href="/arts">Arts</motion.a>
-            <motion.a variants={itemMotion} href="/contact">Contact</motion.a>
+            <motion.a variants={itemMotion} href="/">
+              Home
+            </motion.a>
+            <motion.a variants={itemMotion} href="/">
+              Arts
+            </motion.a>
+            <motion.a variants={itemMotion} href="/">
+              Contact
+            </motion.a>
           </motion.div>
         </div>
       )}
