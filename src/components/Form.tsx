@@ -1,52 +1,117 @@
-import { useState } from "react"
+import { useState } from "react";
+import emailjs from "emailjs-com";
 
 export default function Form() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [message, setMessage] = useState("")
+  /*
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [isPopupVisible, setPopupVisible] = useState(false);
 
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const btn = document.getElementById("button") as HTMLInputElement;
+    btn.value = "Sending...";
+
+    // Send the email using EmailJS
+    const serviceID = "";
+    const templateID = "";
+
+    emailjs
+      .sendForm(serviceID, templateID, e.target as HTMLFormElement)
+      .then(
+        () => {
+          btn.value = "Send Email";
+          setPopupVisible(true); // Show the popup on success
+          setFormData({ name: "",  message: "", email: "" }); // Reset form
+        },
+        (error) => {
+          btn.value = "Send Email";
+          console.error("Email sending error", error);
+        }
+      );
+  };
+*/
   return (
-    <div>
-      <h1 className="text-center text-xl">Get in touch ✨</h1>
+    <section id="contact" className="flex flex-col items-center pt-16 min-h-screen">
+      <h1 className="text-3xl font-bold text-gray-800 mb-16">Get in Touch ✨</h1>
       <form
-        className="flex flex-col items-center gap-12 py-24"
-        name="contact"
-        data-netlify="true"
+        id="form"
+        // onSubmit={handleSubmit}
+        className="w-full max-w-lg p-8 bg-gray-100 shadow-md rounded-lg"
       >
-        <input type="hidden" name="form-name" value="contact" />
-        <p>
-          <label htmlFor="name">Name</label> <br />
+        <div className="mb-6">
+          <label
+            htmlFor="name"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Name
+          </label>
           <input
-            className="w-64 bg-gray-200 px-4 py-2"
             type="text"
             name="name"
+            id="name"
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            placeholder="Enter your name"
             required
-            onChange={(e) => setName(e.target.value)}
+            // value={formData.name}
+            // onChange={handleChange}
           />
-        </p>
-        <p>
-          <label htmlFor="email">Email</label> <br />
+        </div>
+
+        <div className="mb-6">
+          <label
+            htmlFor="email"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Email
+          </label>
           <input
-            type="email"
+            type="text"
             name="email"
-            className="w-64 bg-gray-200 px-4 py-2"
+            id="email"
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            placeholder="Enter your email"
             required
-            onChange={(e) => setEmail(e.target.value)}
+            // value={formData.email}
+            // onChange={handleChange}
           />
-        </p>
-        <p>
-          <label htmlFor="message">Message</label> <br />
+        </div>
+
+        <div className="mb-6">
+          <label
+            htmlFor="message"
+            className="block text-gray-700 font-semibold mb-2"
+          >
+            Message
+          </label>
           <textarea
-            className="w-64 bg-gray-200 px-4 py-2"
             name="message"
+            id="message"
+            className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+            placeholder="Enter your message"
             required
-            onChange={(e) => setMessage(e.target.value)}
+            // value={formData.message}
+            // onChange={handleChange}
           ></textarea>
-        </p>
-        <p className="rounded-md bg-primary px-4 py-2 font-bold text-white">
-          <input type="submit" value="Submit message" />
-        </p>
+        </div>
+
+        <input
+          type="submit"
+          id="button"
+          value="Send Email"
+          className="w-full bg-red-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-red-700 transition-all"
+        />
       </form>
-    </div>
-  )
+    </section>
+  );
 }
