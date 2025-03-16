@@ -37,15 +37,15 @@
   <div class="flex justify-center pt-12 mb-12 text-center xl:gap-16">
     <div class="w-32">
       <h2>Art Posts</h2>
-      <p class="text-xl font-bold">85</p>
+      <p id="art-counter" class="text-xl font-bold"></p>
     </div>
     <div class="w-32">
       <h2>Visitors</h2>
-      <p class="text-xl font-bold">1.2m</p>
+      <p id="visitor-counter" class="text-xl font-bold"></p>
     </div>
     <div class="w-32">
       <h2>Reviews</h2>
-      <p class="text-xl font-bold">47</p>
+      <p id="review-counter" class="text-xl font-bold"></p>
     </div>
   </div>
 
@@ -85,6 +85,30 @@
     path.style.strokeDasharray = pathLength.toString();
     path.style.strokeDashoffset = pathLength.toString();
   }
+
+  function incrementCounter(
+    selector: string,
+    current: number,
+    target: number,
+    duration: number,
+    letter: string = ""
+  ) {
+    let counter = document.getElementById(selector);
+    let stepTime = Math.abs(Math.floor(duration / target));
+    if (current < target && counter) {
+      current++;
+      counter.innerText = current.toString() + letter;
+      setTimeout(
+        () => incrementCounter(selector, current, target, duration, letter),
+        stepTime
+      );
+    }
+  }
+
+  //   Increment function
+  incrementCounter("art-counter", 0, 85, 2000);
+  incrementCounter("visitor-counter", 0, 347, 2000, "k");
+  incrementCounter("review-counter", 0, 292, 2000);
 
   window.addEventListener("DOMContentLoaded", updatedPath);
   window.addEventListener("resize", updatedPath);
