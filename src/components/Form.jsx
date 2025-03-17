@@ -1,53 +1,55 @@
-import { useState } from "react";
-import emailjs from "emailjs-com";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 
 export default function Form() {
-  /*
+  const form = useRef();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
-  const [isPopupVisible, setPopupVisible] = useState(false);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
+  const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const sendEmail = (e) => {
     e.preventDefault();
 
-    const btn = document.getElementById("button") as HTMLInputElement;
+    const btn = document.getElementById("button");
     btn.value = "Sending...";
 
-    // Send the email using EmailJS
-    const serviceID = "";
-    const templateID = "";
-
     emailjs
-      .sendForm(serviceID, templateID, e.target as HTMLFormElement)
+      .sendForm("service_mcbb91r", "template_tty3hxr", form.current, {
+        publicKey: "Vnp52ZGpzK8G7jUPE",
+      })
       .then(
         () => {
           btn.value = "Send Email";
-          setPopupVisible(true); // Show the popup on success
-          setFormData({ name: "",  message: "", email: "" }); // Reset form
+          console.log("SUCCESS!");
+          setFormData({ name: "", message: "", email: "" });
         },
         (error) => {
-          btn.value = "Send Email";
-          console.error("Email sending error", error);
+          btn.value = "Send Failed";
+          console.log("FAILED...", error.text);
         }
       );
   };
-*/
+
   return (
-    <section id="contact" className="flex flex-col items-center pt-16 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 mb-16">Get in Touch ✨</h1>
+    <section
+      id="contact"
+      className="flex flex-col items-center pt-16 min-h-screen"
+    >
+      <h1 className="text-3xl font-bold text-gray-800 mb-16">
+        Get in Touch ✨
+      </h1>
       <form
         id="form"
-        // onSubmit={handleSubmit}
-        className="w-full max-w-lg p-8 bg-gray-100 shadow-md rounded-lg"
+        ref={form}
+        onSubmit={sendEmail}
+        className="w-full max-w-lg p-8 bg-gray-100 shadow-lg rounded-xl border border-gray-200"
       >
         <div className="mb-6">
           <label
@@ -63,8 +65,8 @@ export default function Form() {
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder="Enter your name"
             required
-            // value={formData.name}
-            // onChange={handleChange}
+            value={formData.name}
+            onChange={handleChange}
           />
         </div>
 
@@ -76,14 +78,14 @@ export default function Form() {
             Email
           </label>
           <input
-            type="text"
+            type="email"
             name="email"
             id="email"
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder="Enter your email"
             required
-            // value={formData.email}
-            // onChange={handleChange}
+            value={formData.email}
+            onChange={handleChange}
           />
         </div>
 
@@ -100,8 +102,8 @@ export default function Form() {
             className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             placeholder="Enter your message"
             required
-            // value={formData.message}
-            // onChange={handleChange}
+            value={formData.message}
+            onChange={handleChange}
           ></textarea>
         </div>
 
